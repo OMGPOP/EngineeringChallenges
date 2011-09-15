@@ -1,0 +1,7 @@
+var Canvas = require('canvas'), http = require('http'), _ = require('underscore'), url = require('url');
+
+function padcenter(a,c,d){var b="",e=RegExp("(.*)(.{"+a.length+"})(\\1)$");do b+=c;while(--d);return b.replace(e,"$1"+a+"$3")};
+function rgbhex(b){var c=256/7,a=b.split(""),b=String("00"+((1*Number(a[0])+2*Number(a[1])+4*Number(a[2]))*c).toString(16)).slice(-2),d=String("00"+((1*Number(a[3])+2*Number(a[4])+4*Number(a[5]))*c).toString(16)).slice(-2),a=String("00"+((1*Number(a[6])+2*Number(a[7])+4*Number(a[8]))*c).toString(16)).slice(-2);return"#"+b+d+a};
+function automaton(c,f,g){var b=f+g.length+f,e=padcenter(g,"0",b),d,i=(c.toString(2).split("").reverse().join("")+"00000000").slice(0,8).toString(2),c=new Canvas(b,b/2),h=c.getContext("2d");_.times(f,function(c){d=e.slice(0,1)+e+e.slice(-1);e=_.reduce(_.map(_.range(b),function(a){var b=i[Number(parseInt(d.slice(a,a+3),2))];if(b==1)h.fillStyle=rgbhex(String("000"+d.slice(a-3,a)).slice(-3)+String(d.slice(a,a+3))+String(d.slice(a+3,a+6)+"000").slice(0,3)),h.fillRect(a,c,1,1);return b}),function(a,b){return String(a)+String(b)})});return c};
+
+http.createServer(function(e,b){var a=url.parse(e.url,!0);if(a.pathname=="/automaton"){var c=a.query.rule?Number(a.query.rule):30,d=a.query.steps?Number(a.query.steps):80,a=a.query.cells?String(a.query.cells):"1";console.log("automaton("+c+","+d+","+a+")");b.writeHead(200,{"Content-Type":"text/html"});b.end('<img src="'+automaton(c,d,a).toDataURL("image/png")+'" />')}else b.writeHead(404),b.end()}).listen(3E3);console.log("Automaton Server started on port 3000");
