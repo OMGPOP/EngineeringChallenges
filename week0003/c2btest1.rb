@@ -1,6 +1,6 @@
 require 'robot'
 
-class MyBot2
+class C2btest1
   include Robot
 
   attr_accessor :location, :target, :movement_directive, :radar_directive, :targeting_directive
