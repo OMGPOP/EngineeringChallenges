@@ -21,7 +21,7 @@ int floorLog2(int n) {
 	return pos;
 }
 
-int f(int n){
+int factorial(int n){
 	if(n < 0) return 0;
 	if(n < 2) return 1;
 
@@ -49,6 +49,6 @@ int f(int n){
 }
 
 int main() {
-	std::cout << "f(5) = " << f(5) << std::endl;
+	std::cout << "factorial(5) = " << factorial(5) << std::endl;
 	return 0;
 }
