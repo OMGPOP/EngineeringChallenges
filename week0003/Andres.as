@@ -1,0 +1,1 @@
+function f(n:int):int {	var r:int = 1;	var i:int = n;	for(; i > 1; i--) r *= i;	return r;}
