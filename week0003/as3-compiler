@@ -1,0 +1,14 @@
+#!/bin/bash
+
+for as3 in *.as
+do
+  filename=${as3%.*}
+  target=${filename}Compiled.as
+  echo -e "import avmplus.System\ntrace(f(System.argv));" > $target
+  cat $as3 >> $target
+  java -jar /opt/redtamarin/asc.jar -AS3 -import /opt/redtamarin/builtin.abc -import /opt/redtamarin/toplevel.abc -exe /opt/redtamarin/redshell $target
+  rm $target
+  rm ${filename}Compiled.abc
+  mv ${filename}Compiled.exe ${filename}Compiled
+  chmod +x ${filename}Compiled
+done

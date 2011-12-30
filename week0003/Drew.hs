@@ -2,7 +2,7 @@ import System (getArgs)
 
 main = do
   args <- getArgs
-  print $ factorial' (read (head args) :: Integer)
+  print $ factorial'' (read (head args) :: Integer)
 
 factorial :: Integer -> Integer
 factorial 2 = 2
