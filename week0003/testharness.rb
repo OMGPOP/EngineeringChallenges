@@ -4,6 +4,7 @@ require 'benchmark'
 
 Benchmark.bm do |b|
   ARGV.each do |prog|
+    `chmod +x #{prog}`
     b.report(prog) do
       1000.times { `./#{prog} 12` }
     end
