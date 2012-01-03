@@ -48,7 +48,8 @@ int factorial(int n){
 	return r << shift;
 }
 
-int main() {
-	std::cout << "factorial(5) = " << factorial(5) << std::endl;
+int main(int argc, char* argv[]) {
+	if(argc < 2) return 1;
+	std::cout << factorial(atoi(argv[1])) << std::endl;
 	return 0;
 }
