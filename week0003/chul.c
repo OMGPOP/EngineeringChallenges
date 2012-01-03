@@ -11,13 +11,10 @@ long int my_factorial(long int n)
   return(n);
 }
 
-main()
+int main (int argc, char *argv[])
 {
-  char s[10];
-  long int f;
-  printf("Enter a number to factorial\n");
-  fgets(s, 10, stdin);
-  f = my_factorial(atoi(&s));
-  printf("factorial of %s is %ld\n",s,f);
+  long int s,f;
+  f = my_factorial(atoi(argv[1]));
+  printf("factorial of %s is %ld\n",argv[1],f);
 }
 
