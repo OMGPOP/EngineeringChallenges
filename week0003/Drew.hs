@@ -1,9 +1,8 @@
 import System (getArgs)
 
 main = do
-  args <- getArgs
-  print $ factorial'' (read (head args) :: Integer)
-
+  (n:_) <- getArgs
+  print $ factorial'' (read n :: Integer)
 
 factorial :: Integer -> Integer
 factorial 2 = 2
