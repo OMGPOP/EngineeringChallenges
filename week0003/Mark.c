@@ -1,13 +1,15 @@
-unsigned int recursiveFactorial( int n )
+#include <stdio.h>
+
+unsigned long long recursiveFactorial( long long n )
 {
-	unsigned int factorial;
+	unsigned long long factorial;
 	factorial = ( n>=1 ? n * recursiveFactorial( n - 1 ) : 1 );
 	return factorial;
 }
 
-int main (int argc, char *argv[])
+int main( int argc, const char *argv[] )
 {
-	printf( "%i\n", recursiveFactorial( atoi(argv[1]) ) );
+	printf( "%lld\n", recursiveFactorial( ( long long ) atoi( argv[ 1 ] ) ) );
 
 	return 0;
 }

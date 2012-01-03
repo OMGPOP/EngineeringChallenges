@@ -4,6 +4,7 @@ main = do
   args <- getArgs
   print $ factorial'' (read (head args) :: Integer)
 
+
 factorial :: Integer -> Integer
 factorial 2 = 2
 factorial n = n * factorial (n - 1)
