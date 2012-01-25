@@ -1,6 +1,4 @@
 #!/bin/bash
-echo $0
-
 for file in *
 do
   if [ -x $file ]
