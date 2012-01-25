@@ -1,4 +1,9 @@
 #!/bin/bash
+if [ -x $0 ]
+then
+  exit 
+fi
+
 for file in *
 do
   if [ -x $file ]
