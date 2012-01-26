@@ -41,7 +41,7 @@ package
 			}
 			*/
 
-			// This is O((sqrt(2)/2-1)*sqrt(x))
+			// This is O((1-sqrt(2)/2)*sqrt(x))
 			var numDoubleSquares:int = 0;
 			var xsqrt:Number = Math.sqrt(x);
 			var limit:int = Math.round(xsqrt*Math.cos(Math.PI/4));
