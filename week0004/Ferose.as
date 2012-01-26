@@ -28,6 +28,8 @@ package
 		
 		private function findNumDoubleSquares(x:int) : int
 		{
+			// This is O(n/2), I can prove it
+			/*
 			var numDoubleSquares:int = 0;
 			var max:int = Math.ceil(Math.sqrt(x));
 			for (var i:int = 0; i <= max; i++) {
@@ -37,6 +39,18 @@ package
 					}
 				}
 			}
+			*/
+
+			// This is O((sqrt(2)/2-1)*sqrt(x))
+			var numDoubleSquares:int = 0;
+			var xsqrt:Number = Math.sqrt(x);
+			var limit:int = Math.round(xsqrt*Math.cos(Math.PI/4));
+			for (var r:int = xsqrt; r >= limit; r--) {
+				if (Math.sqrt(x-r*r)%1 == 0) {
+					numDoubleSquares++;
+				}
+			}
+
 			return numDoubleSquares;
 		}
 	}
