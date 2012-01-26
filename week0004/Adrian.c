@@ -1,16 +1,16 @@
 #include <stdio.h>
 #include <math.h>
 
-inline double GetCompliment(int c, int n) { return (double) sqrt( (n - (c * c)) ); }
+inline double GetComplement(int c, int n) { return (double) sqrt( (n - (c * c)) ); }
 
 int CalcDoubleSquare(int n) 
 {
 	int nSqrt = (int) sqrt(n), sums = 0;
-	double compliment;
+	double complement;
 	
-	while( (compliment = GetCompliment( nSqrt, n )) <= nSqrt-- )
+	while( (complement = GetComplement( nSqrt, n )) <= nSqrt-- )
 	{
-		if( floor(compliment) == compliment ) {
+		if( floor(complement) == complement ) {
 			sums++;
 		}
 	}
