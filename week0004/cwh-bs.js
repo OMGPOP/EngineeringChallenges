@@ -1,2 +1,2 @@
 #!/usr/bin/env node
-r=require;r("fs").readFile("input.txt","utf8",function(a,e){_=r("underscore"),p=Math.pow,s=Math.sqrt,d=e.split("\n"),b=_.rest(d);_.times(d[0],function(c){console.log(_.size(_.filter(_.range((s(b[c]/2>>0)>>0)+1),function(a){return p(s(b[c]-p(a,2))>>0,2)+p(a,2)==b[c]})))})});
+r=require;r("fs").readFile("input.txt","utf8",function(f,e){_=r("underscore");p=Math.pow;s=Math.sqrt;d=e.split("\n");b=_.rest(d);/*drew's a derp*/_.times(d[0],function(c){console.log(_.size(_.filter(_.range((s(b[c]/2)>>0)+1),function(a){return p(s(b[c]-a*a)>>0,2)+a*a==b[c]})))})});
