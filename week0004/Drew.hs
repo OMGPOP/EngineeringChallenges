@@ -1,5 +1,5 @@
 main = do
-  file <- readFile $ "input.txt"
+  file <- readFile "input.txt"
   mapM_ (putStrLn . show . numDblSquares . read) (tail $ lines file)
 
 isqrt = floor . sqrt . fromIntegral
