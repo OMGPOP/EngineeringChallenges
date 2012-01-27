@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 var _ = require('underscore');
 
 require('fs').readFile("input.txt", "utf8", function(err, data) {
