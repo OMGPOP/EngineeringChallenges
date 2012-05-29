@@ -32,13 +32,14 @@ class Marching():
 		h1 = h2 = h3 = h4 = 0
 		v1 = v2 = v3 = v4 = 0
 		d1 = d2 = d3 = d4 = 0
+		b1 = b2 = b3 = b4 = 0
 		thebigone = 0
 		bh = 0
 		bv = 0
 		direction = 0
 		while i < size:
 			j = 0
-			h = v = d = 0
+			h = v = d = b = 0
 			while j <= size - 4:
 				n1 = j + 1
 				n2 = j + 2
@@ -75,6 +76,19 @@ class Marching():
 						bv = i
 						bh = j
 						direction = 2
+					b1 = self.grid[i][j+3]
+					b2 = self.grid[i+1][j+2]
+					b3 = self.grid[i+2][j+1]
+					b4 = self.grid[i+3][j]
+					if b1 == 0 | b2 == 0 | b3 == 0 | b4 == 0:
+						b = 0
+					else:
+						b = b1 + b2 + b3 + b4
+					if b > thebigone:
+						thebigone = b
+						bv = i
+						bh = j
+						direction = 3
 				if v1 == 0 | v2 == 0 | v3 == 0 | v4 == 0:
 					v = 0
 				else:
@@ -92,8 +106,8 @@ class Marching():
 					bv = j
 					bh = i
 					direction = 1
-				#print("i:"+str(i)+" j:"+str(j)+" v:"+str(v)+" h:"+str(h)+" d:"+str(d))
-				#print("d1: "+str(d1)+" d2: "+str(d2)+" d3: "+str(d3)+" d4: "+str(d4))
+				print("i:"+str(i)+" j:"+str(j)+" v:"+str(v)+" h:"+str(h)+" d:"+str(b))
+				print("d1: "+str(b1)+" d2: "+str(b2)+" d3: "+str(b3)+" d4: "+str(b4))
 				j = j + 1
 			i = i + 1
 		product = 0
@@ -101,6 +115,8 @@ class Marching():
 			product = self.grid[bv][bh] * self.grid[bv+1][bh] * self.grid[bv+2][bh] * self.grid[bv+3][bh]
 		elif direction == 2:
 			product = self.grid[bv][bh] * self.grid[bv+1][bh+1] * self.grid[bv+2][bh+2] * self.grid[bv+3][bv+3]
+		elif direction == 3:
+			product = self.grid[bv][bh+3] * self.grid[bv+1][bh+2] * self.grid[bv+2][bh+1] * self.grid[bv+3][bh]
 		else:
 			product = self.grid[bv][bh] * self.grid[bv][bh+1] * self.grid[bv][bh+2] * self.grid[bv][bh+3]
 		print("bv: "+str(bv)+" bh: "+str(bh)+" dir: "+str(direction)+" product: "+str(product))
