@@ -21,7 +21,17 @@ m =  [[ 8,  2, 22, 97, 38, 15,  0, 40,  0, 75,  4,  5,  7, 78, 52, 12, 50, 77, 9
       [20, 73, 35, 29, 78, 31, 90,  1, 74, 31, 49, 71, 48, 86, 81, 16, 23, 57,  5, 54],
       [ 1, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52,  1, 89, 19, 67, 48]]
 
-def find_max stream
+# 
+# Brute force is  O(mn - m^2 + m)
+# Cache:          O(2m + mn - m^2 - n)
+# Cache & pack:   O(n) if max(x)^m < 64/m (64-bit)
+#
+# where: 
+#   m is the number of elements in the product
+#   n is the input size
+#   x is a value in the input
+#
+def find_max_product stream
   a, b, c, d = stream
   queue = d | (d * c << 21)
   queue |= (((queue >> 21) & 2097151) * b) << 42
@@ -36,13 +46,13 @@ end
 
 max = []
 (0..19).each do |i|
-  max << find_max(m[i]) # row
-  max << find_max((0..19).map{ |c| m[c][i] }) # col
+  max << find_max_product(m[i]) # row
+  max << find_max_product((0..19).map{ |c| m[c][i] }) # col
   if i > 2
-    max << find_max((0..i).map{ |d| m[d][i-d] })
-    max << find_max((0..i).map{ |d| m[19-d][(19-i)+d] })
-    max << find_max((0..i).map{ |d| m[(19-i)+d][d] })
-    max << find_max((0..i).map{ |d| m[d][19-d] })
+    max << find_max_product((0..i).map{ |d| m[d][i-d] })
+    max << find_max_product((0..i).map{ |d| m[19-d][(19-i)+d] })
+    max << find_max_product((0..i).map{ |d| m[(19-i)+d][d] })
+    max << find_max_product((0..i).map{ |d| m[d][19-d] })
   end
 end
 
