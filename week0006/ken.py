@@ -106,8 +106,8 @@ class Marching():
 					bv = j
 					bh = i
 					direction = 1
-				print("i:"+str(i)+" j:"+str(j)+" v:"+str(v)+" h:"+str(h)+" d:"+str(b))
-				print("d1: "+str(b1)+" d2: "+str(b2)+" d3: "+str(b3)+" d4: "+str(b4))
+				#print("i:"+str(i)+" j:"+str(j)+" v:"+str(v)+" h:"+str(h)+" d:"+str(b))
+				#print("d1: "+str(b1)+" d2: "+str(b2)+" d3: "+str(b3)+" d4: "+str(b4))
 				j = j + 1
 			i = i + 1
 		product = 0
