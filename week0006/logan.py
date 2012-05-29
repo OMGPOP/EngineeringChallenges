@@ -1,5 +1,4 @@
 #!/usr/bin/python
-import math
 
 n = [
 [ 8,  2, 22, 97, 38, 15,  0, 40, 00, 75,  4,  5,  7, 78, 52, 12, 50, 77, 91,  8],
@@ -27,8 +26,8 @@ n = [
 products = []
 
 def run(xinc, yinc, xstart=0):
-	for yi, row in enumerate(n):
-		for xi, item in enumerate(n[yi][xstart:]):
+	for yi in range(len(n)):
+		for xi in range(len(n[yi])):
 			try:
 				products.append(
 					n[yi+yinc*0][xstart+xi+xinc*0] *
