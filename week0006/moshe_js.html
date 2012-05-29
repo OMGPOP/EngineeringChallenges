@@ -4,7 +4,12 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <script type="text/javascript">
-			//5 minutes lame solution: go through array and check all expressions to the right, down and diagnal
+        function checkHighest( val ){
+				if(val > highest) {
+					highest = val;
+					//highestExpresion = exp;
+				}	
+			}
 			grid = [[8, 2, 22, 97, 38, 15, 0, 40, 0, 75, 4, 5, 7, 78, 52, 12, 50, 77, 91, 8], 
 					[49, 49, 99, 40, 17, 81, 18, 57, 60, 87, 17, 40, 98, 43, 69, 48, 4, 56, 62, 0], 
 					[81, 49, 31, 73, 55, 79, 14, 29, 93, 71, 40, 67, 53, 88, 30, 3, 49, 13, 36, 65], 
@@ -32,31 +37,53 @@
 
 			for(var i = 0; i < grid.length; i++) {
 				for(var j = 0; j < grid.length; j++) {
-					if(i + expressionLength < grid.length) {
-						var right = grid[i][j] * grid[i+1][j] * grid[i+2][j] * grid[i+3][j];
-						if(right > highest) {
-							highest = right;
-							highestExpresion = "grid[" + i + "][" + j + "] * grid[" + (i + 1) + "][" + j + "] * grid[" + (i + 2) + "][" + j + "]* grid[" + (i + 3) + "][" + j + "]";
+						
+						if(i + expressionLength < grid.length)
+						{
+							var right = grid[i][j] * grid[i+1][j] * grid[i+2][j] * grid[i+3][j];
+							checkHighest( right );
 						}
-
-						var diagnal = grid[i][j] * grid[i+1][j + 1] * grid[i+2][j + 2] * grid[i+3][j + 3];
-						if(diagnal > highest) {
-							highest = diagnal;
-							highestExpresion = "grid[" + i + "][" + j + "] * grid[" + (i + 1) + "][" + (j + 1) + "] * grid[" + (i + 2) + "][" + (j + 2) + "]* grid[" + (i + 2) + "][" + (j + 2) + "]";
+						
+						
+						if(j + expressionLength < grid.length)
+						{
+							var down = grid[i][j] * grid[i][j + 1] * grid[i][j + 2] * grid[i][j + 3];
+							checkHighest( down );
 						}
-
-						var down = grid[i][j] * grid[i][j + 1] * grid[i][j + 2] * grid[i][j + 3];
-						if(diagnal > highest) {
-							highest = down;
-							highestExpresion = "grid[" + i + "][" + j + "] * grid[" + i + "][" + (j + 1) + "] * grid[" + i + "][" + (j + 2) + "]* grid[" + i + "][" + (j + 3) + "]";
+						
+						
+						if(i - expressionLength > 0 && j + expressionLength < grid.length)
+						{
+							var leftdown = grid[i][j] * grid[i -1 ][j + 1] * grid[i - 2][j + 2] * grid[i - 3][j + 3];
+							checkHighest( leftdown );
+							
 						}
-					}
+						
+						if(i - expressionLength > 0 && j - expressionLength > 0)
+						{
+							var leftup = grid[i][j] * grid[i - 1][j - 2] * grid[i][j - 2] * grid[i - 3][j - 3];
+							checkHighest( leftup );
+						}
+						
+						if(i + expressionLength < grid.length && j - expressionLength > 0)
+						{
+							var rightup = grid[i][j] * grid[i + 1][j - 1] * grid[i + 2][j - 2] * grid[i + 3][j - 3];
+							checkHighest( rightup );
+						}
+						
+						if(i + expressionLength < grid.length && j + expressionLength > 0)
+						{
+							var rightdown = grid[i][j] * grid[i+1][j + 1] * grid[i+2][j + 2] * grid[i+3][j + 3];
+							checkHighest( rightdown );
+						}
+					
 
 				}
 			}
 
 			alert(highest + ":" + highestExpresion);
-
+			
+			
         </script>
         <title>New Web Project</title>
     </head>
