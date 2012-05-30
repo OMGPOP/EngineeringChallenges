@@ -24,7 +24,7 @@ m =  [[ 8,  2, 22, 97, 38, 15,  0, 40,  0, 75,  4,  5,  7, 78, 52, 12, 50, 77, 9
 # 
 # Brute force is  O(mn - m^2 + m)
 # Cache:          O(2m + mn - m^2 - n)
-# Cache & pack:   O(n) if max(x)^m < 64/m (64-bit)
+# Cache & pack:   O(n) if log2(max(x)^m) < 64/(m-1) (64-bit)
 #
 # where: 
 #   m is the number of elements in the product
@@ -44,16 +44,19 @@ def find_max_product stream
   max
 end
 
-max = []
+v = []
+
 (0..19).each do |i|
-  max << find_max_product(m[i]) # row
-  max << find_max_product((0..19).map{ |c| m[c][i] }) # col
+  v << m[i] # row
+  v << (0..19).map{ |c| m[c][i] } # col
   if i > 2
-    max << find_max_product((0..i).map{ |d| m[d][i-d] })
-    max << find_max_product((0..i).map{ |d| m[19-d][(19-i)+d] })
-    max << find_max_product((0..i).map{ |d| m[(19-i)+d][d] })
-    max << find_max_product((0..i).map{ |d| m[d][19-d] })
+    v << (0..i).map{ |d| m[d][i-d] }
+    v << (0..i).map{ |d| m[(19-i)+d][d] }
+    if i < 19
+      v << (0..i).map{ |d| m[19-d][(19-i)+d] }
+      v << (0..i).map{ |d| m[d][19-d] }
+    end
   end
 end
 
-puts max.max
+puts find_max_product(v.zip([0] * v.length).flatten)
