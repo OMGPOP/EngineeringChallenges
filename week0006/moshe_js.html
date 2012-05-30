@@ -59,18 +59,6 @@
 							
 						}
 						
-						if(i - expressionLength > 0 && j - expressionLength > 0)
-						{
-							var leftup = grid[i][j] * grid[i - 1][j - 2] * grid[i][j - 2] * grid[i - 3][j - 3];
-							checkHighest( leftup );
-						}
-						
-						if(i + expressionLength < grid.length && j - expressionLength > 0)
-						{
-							var rightup = grid[i][j] * grid[i + 1][j - 1] * grid[i + 2][j - 2] * grid[i + 3][j - 3];
-							checkHighest( rightup );
-						}
-						
 						if(i + expressionLength < grid.length && j + expressionLength > 0)
 						{
 							var rightdown = grid[i][j] * grid[i+1][j + 1] * grid[i+2][j + 2] * grid[i+3][j + 3];
