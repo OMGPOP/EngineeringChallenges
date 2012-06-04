@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+
+require 'base64'
+
+eval Base64.decode64 <<-prog
+CmBjYXQgI3tBUkdWWzBdfWAuc3BsaXQoIlxuIikubWFweyB8eHwgeC5zcGxp
+dCgiICIpLm1hcCgmOnRvX2kpIH0uZWFjaCBkbyB8biwga3wKICBrID0gayAt
+IDEKICB4ID0gKC0wLjUgKiBNYXRoLnNxcnQoKDEgLSAyICogbikqKjIgLSA4
+ICogaykgKyBuIC0gMC41KS50b19pCiAgeSA9IDEgKyBrIC0gKHggKiAobiAt
+ICh4ICsgMykvMi4wKSkudG9faQogIHB1dHMgIiN7eCArIDF9ICN7eSArIDF9
+IgplbmQK
+prog
