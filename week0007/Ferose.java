@@ -26,7 +26,7 @@ public class Ferose {
 			long addition = n - 1;
 			long sum = 0;
 			long count = 0;
-			while (sum <= k) {
+			while (sum < k) {
 				sum += addition--;
 				count++;
 			}
