@@ -1,12 +1,8 @@
 #!/usr/bin/env ruby
 
-require 'base64'
-
-eval Base64.decode64 <<-prog
-CmBjYXQgI3tBUkdWWzBdfWAuc3BsaXQoIlxuIikubWFweyB8eHwgeC5zcGxp
-dCgiICIpLm1hcCgmOnRvX2kpIH0uZWFjaCBkbyB8biwga3wKICBrID0gayAt
-IDEKICB4ID0gKC0wLjUgKiBNYXRoLnNxcnQoKDEgLSAyICogbikqKjIgLSA4
-ICogaykgKyBuIC0gMC41KS50b19pCiAgeSA9IDEgKyBrIC0gKHggKiAobiAt
-ICh4ICsgMykvMi4wKSkudG9faQogIHB1dHMgIiN7eCArIDF9ICN7eSArIDF9
-IgplbmQK
-prog
+`cat #{ARGV[0]}`.split("\n").map{ |x| x.split(" ").map(&:to_i) }.each do |n, k|
+  k = k - 1
+  x = (-0.5 * Math.sqrt((1 - 2 * n)**2 - 8 * k) + n - 0.5).to_i
+  y = 1 + k - (x * (n - (x + 3)/2.0)).to_i
+  puts "#{x + 1} #{y + 1}"
+end
