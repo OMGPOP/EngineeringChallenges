@@ -20,7 +20,7 @@ void solve( unsigned long int n, long int k )
 	long int firstDigit = n - solA;
 	long int secondDigit = (numSolutions - opp) + firstDigit + 1;
 	
-	printf("%ld %ld, %ld %ld\n", n, k, firstDigit, secondDigit);
+	printf("%ld %ld\n", firstDigit, secondDigit);
 }
 
 int main(int argc, char* argv[])
@@ -28,14 +28,11 @@ int main(int argc, char* argv[])
 	if ( argc == 2 )
 	{
 		char* filename = argv[1];
-		printf("opening file: %s\n", filename);
 	
 		FILE* file = fopen(filename, "r");
 		
 		if ( file )
-		{
-			printf("valid\n");
-			
+		{			
 			fseek( file, 0, SEEK_END );
 			int size = ftell(file);
 			fseek( file, 0, SEEK_SET );
