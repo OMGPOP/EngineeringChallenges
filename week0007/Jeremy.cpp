@@ -1,11 +1,10 @@
 // EngineeringChallenge.cpp : Defines the entry point for the console application.
 //
 
-#include "stdafx.h"
 #include <stdio.h>
 #include <math.h>
 
-int _tmain(int argc, _TCHAR* argv[])
+int main(int argc, char* argv[])
 {
 
 #ifdef _DEBUG
@@ -31,14 +30,8 @@ int _tmain(int argc, _TCHAR* argv[])
 		return 1;
 	}
 
-	_TCHAR* filename = argv[1];
-	FILE* file = NULL;
-	int err = _wfopen_s(&file, filename, L"r");
-	if (!file)
-	{
-		printf ("Yo, there was an error opening that file.\n");
-		return 1;
-	}
+	char* filename = argv[1];
+  FILE* file = fopen(filename, "r");
 
 	int n = 0;
 	while (1 == fscanf(file, "%d", &n))
