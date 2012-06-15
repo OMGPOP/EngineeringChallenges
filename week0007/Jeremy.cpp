@@ -31,25 +31,25 @@ int main(int argc, char* argv[])
 	}
 
 	char* filename = argv[1];
-  FILE* file = fopen(filename, "r");
+	FILE* file = fopen(filename, "r");
 
-	int n = 0;
+	long n = 0;
 	while (1 == fscanf(file, "%d", &n))
 	{
-		int k = 0;
+		long k = 0;
 		if (1 != fscanf(file, "%d", &k))
 		{
 			printf("yo mo fo, error reading k.\n");
 			return 1;
 		}
 
-		float column = (float)n - (0.5f) - sqrtf(((float)n*n) - (float)n + (0.25f) - (2.0f * (float)k));
-		int col = (int) ceilf(column);
+		double column = (double)n - (0.5f) - sqrtf(((double)n*n) - (double)n + (0.25f) - (2.0f * (double)k));
+		int col = (long) ceil(column);
 
-		int previousColumn = col - 1;
-		int ElementCountAtColumn = previousColumn * n - ((previousColumn * previousColumn + previousColumn) / 2.0f);
+		long previousColumn = col - 1;
+		long ElementCountAtColumn = previousColumn * n - ((previousColumn * previousColumn + previousColumn) / 2.0f);
 
-		int row = col + (k - ElementCountAtColumn);
+		long row = col + (k - ElementCountAtColumn);
 		printf("%d %d\n", col, row);
 	}
 
